@@ -2,8 +2,6 @@
 
 ## TODO
 
-- Retirer les parties du code A FAIRE de l'exo
-- Sélectionner une partie du code TMA-like
 - Consignes et directives à rédiger
 
 ## Infos projet
