@@ -150,7 +150,6 @@ export default {
         });
       }
     },
-    // TODO
     removeFromList(product, list) {
       list.splice(list.indexOf(product), 1);
     }
