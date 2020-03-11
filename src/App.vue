@@ -1,30 +1,23 @@
 <template>
   <v-app>
     <v-content>
-      <router-view></router-view>
+      <Home/>
     </v-content>
   </v-app>
 </template>
 
 <script>
+import Home from "@/views/Home.vue";
+
 export default {
   name: "App",
+
+  components: {
+    Home
+  },
+
   data: () => ({
     //
   })
 };
 </script>
-
-<style lang="scss">
-a {
-  text-decoration: none;
-}
-
-main {
-  overflow-x: hidden;
-}
-
-h1 {
-  white-space: nowrap;
-}
-</style>

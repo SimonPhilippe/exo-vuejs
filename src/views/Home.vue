@@ -1,24 +1,17 @@
 <template>
   <v-container>
     <Nav :pageTitle="pageTitle"/>
-    <v-row>
-      <v-col v-for="article in articles" :key="article.title" lg="6" sm="12">
-        <Article :title="article.title" :picture="article.picture" :text="article.text"/>
-      </v-col>
-    </v-row>
   </v-container>
 </template>
 
 <script>
 import Nav from "@/components/Nav";
-import Article from "@/components/Article";
 
 export default {
   name: "Home",
 
   components: {
-    Nav,
-    Article
+    Nav
   },
 
   data: () => ({

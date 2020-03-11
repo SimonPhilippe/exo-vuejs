@@ -10,17 +10,6 @@
         </v-btn>
       </v-col>
     </v-row>
-    <v-navigation-drawer absolute right color="secondary" v-model="nav">
-      <v-list>
-        <v-list-item-group v-for="menu in menus" :key="menu.title">
-          <v-list-item-content>
-            <router-link :to="{path:menu.path}">
-              <v-list-item dark v-text="menu.title"></v-list-item>
-            </router-link>
-          </v-list-item-content>
-        </v-list-item-group>
-      </v-list>
-    </v-navigation-drawer>
   </div>
 </template>
 
