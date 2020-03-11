@@ -55,7 +55,7 @@
           <v-card-title>Produit I</v-card-title>
           <v-card-subtitle>Gestion des articles</v-card-subtitle>
           <v-list>
-            <v-list-item v-for="product in product2" :key="product.title">
+            <v-list-item v-for="product in product1" :key="product.title">
               <v-list-item-content>
                 <v-list-item v-text="product.title"></v-list-item>
               </v-list-item-content>
@@ -63,7 +63,7 @@
                 <v-icon v-if="product.picture">mdi-image</v-icon>
               </v-list-item-icon>
               <v-list-item-action>
-                <v-icon class="error--text" @click="removeFromList()">mdi-close</v-icon>
+                <v-icon class="error--text" @click="removeFromList(product, product1)">mdi-close</v-icon>
               </v-list-item-action>
             </v-list-item>
           </v-list>
@@ -74,7 +74,7 @@
           <v-card-title>Produit II</v-card-title>
           <v-card-subtitle>Gestion des articles</v-card-subtitle>
           <v-list>
-            <v-list-item v-for="product in product1" :key="product.title">
+            <v-list-item v-for="product in product2" :key="product.title">
               <v-list-item-content>
                 <v-list-item v-text="product.title"></v-list-item>
               </v-list-item-content>
@@ -82,10 +82,7 @@
                 <v-icon v-if="product.picture">mdi-image</v-icon>
               </v-list-item-icon>
               <v-list-item-action>
-                <v-icon
-                  class="error--text"
-                  @click="removeFromList(product, this.product1)"
-                >mdi-close</v-icon>
+                <v-icon class="error--text" @click="removeFromList(product, product2)">mdi-close</v-icon>
               </v-list-item-action>
             </v-list-item>
           </v-list>
@@ -135,7 +132,9 @@ export default {
       }
     },
     // TODO
-    removeFromList() {}
+    removeFromList(product, list) {
+      list.splice(list.indexOf(product), 1);
+    }
   }
 };
 </script>
