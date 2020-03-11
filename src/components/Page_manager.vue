@@ -2,7 +2,7 @@
   <v-container>
     <Nav :pageTitle="pageTitle"/>
     <v-row>
-      <v-col lg="4" sm="12">
+      <v-col lg="4" cols="12">
         <v-card flat>
           <v-card-title>Ajouter un article</v-card-title>
           <v-select
@@ -50,7 +50,7 @@
           <v-icon>mdi-plus</v-icon>
         </v-btn>
       </v-col>
-      <v-col lg="4" sm="6" class="mt-12">
+      <v-col lg="4" md="6" class="mt-12">
         <v-card>
           <v-card-title>Produit I</v-card-title>
           <v-card-subtitle>Gestion des articles</v-card-subtitle>
@@ -110,10 +110,29 @@ export default {
     newURL: "",
     newText: "",
     product1: [
-      { title: "Ouais", picture: "", text: "azerty" },
-      { title: "Ok", picture: "u", text: "azerty" }
+      {
+        title: "Dreamcatcher lo-fi",
+        picture:
+          "https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1052&q=80",
+        text:
+          "Four loko offal chillwave subway tile sustainable wayfarers 3 wolf moon. Tumeric jianbing lyft, messenger bag tilde fashion axe single-origin coffee vape. Copper mug kale chips irony, hot chicken tbh tote bag gochujang. Edison bulb banh mi before they sold out church-key distillery brooklyn meditation chillwave tacos hashtag chartreuse mumblecore keytar."
+      },
+      {
+        title: "Wolf VHS",
+        picture: "",
+        text:
+          "Cray godard salvia enamel pin twee, retro taiyaki messenger bag umami snackwave whatever. Pork belly coloring book pok pok aesthetic. Farm-to-table literally pok pok mlkshk humblebrag snackwave pug celiac roof party iPhone kitsch swag. Shaman austin tousled, intelligentsia af palo santo gluten-free gochujang keffiyeh hella street art actually meh."
+      }
     ],
-    product2: [{ title: "Super", picture: "u", text: "azerty" }]
+    product2: [
+      {
+        title: "Art party",
+        picture:
+          "https://images.unsplash.com/photo-1496096265110-f83ad7f96608?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80",
+        text:
+          "I'm baby four loko woke +1, blog taxidermy iPhone church-key. Echo park edison bulb whatever gentrify mlkshk, 3 wolf moon affogato +1 copper mug poke pickled. Farm-to-table austin organic affogato sriracha aesthetic 90's. Freegan tumblr cornhole, biodiesel slow-carb live-edge ramps forage yr poutine kitsch tilde typewriter raw denim."
+      }
+    ]
   }),
   methods: {
     addArticle() {

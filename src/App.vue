@@ -19,4 +19,12 @@ export default {
 a {
   text-decoration: none;
 }
+
+main {
+  overflow-x: hidden;
+}
+
+h1 {
+  white-space: nowrap;
+}
 </style>

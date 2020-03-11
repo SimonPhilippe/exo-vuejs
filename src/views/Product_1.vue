@@ -10,8 +10,8 @@
 </template>
 
 <script>
-import Nav from "./Nav";
-import Article from "./Article";
+import Nav from "@/components/Nav";
+import Article from "@/components/Article";
 
 export default {
   name: "Product_1",
@@ -23,7 +23,9 @@ export default {
 
   data: () => ({
     pageTitle: "Produit I",
-    articles: []
+    articles: [
+      // TODO -> Manque appels API
+    ]
   })
 };
 </script>

@@ -1,8 +1,8 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Home from '@/components/Home.vue';
-import Product_1 from '@/components/Product_1.vue';
-import Product_2 from '@/components/Product_2.vue';
+import Home from '@/views/Home.vue';
+import Product_1 from '@/views/Product_1.vue';
+import Product_2 from '@/views/Product_2.vue';
 import Page_manager from '@/components/Page_manager.vue';
 
 Vue.use(Router);

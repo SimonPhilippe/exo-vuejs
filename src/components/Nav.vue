@@ -1,10 +1,10 @@
 <template>
   <div>
     <v-row>
-      <v-col cols="10">
+      <v-col lg="11" cols="9">
         <h1 class="text-right">{{pageTitle}}</h1>
       </v-col>
-      <v-col cols="2">
+      <v-col lg="1" cols="3">
         <v-btn fab text color="primary" @click="nav = !nav">
           <v-icon>mdi-menu</v-icon>
         </v-btn>
