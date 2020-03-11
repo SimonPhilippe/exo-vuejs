@@ -10,7 +10,7 @@
         </v-btn>
       </v-col>
     </v-row>
-    <v-navigation-drawer absolute right color="secondary" v-model="nav">
+    <v-navigation-drawer temporary absolute right color="secondary" v-model="nav">
       <v-list>
         <v-list-item-group v-for="menu in menus" :key="menu.title">
           <v-list-item-content>

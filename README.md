@@ -1,9 +1,17 @@
-# vuejs-menu-ex
+# **vuejs-menu-ex**
 
 ## Infos projet
 
 - Branche master = projet entier & complet
 - Branche exo = projet tronqué & gavé d'erreurs (exos à faire dessus)
+
+## Axes de l'exo à développer
+
+- Mettre en place des fake appels API pour remplacer les datas en dur utilisées dans les vues/components.
+- Prendre en charge et afficher les messages d'erreurs issus des appels API.
+- Ajouter un message de confirmation lors d'un ajout/suppression d'article dans une liste *( type snackbar Vuetify )*.
+- Ajouter une fenêtre de dialogue à la suppression d'un article.
+- Plus de difficulté sur l'aspect front/responsive *(JS custom, CSS spécifique à un composant, etc.)*.
 
 ## Project setup
 ```
