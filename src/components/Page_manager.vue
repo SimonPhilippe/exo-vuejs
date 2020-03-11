@@ -102,6 +102,8 @@ export default {
     Nav
   },
 
+  //  Pas de POST pour l'instant, les datas sont distinctes de celles des autres pages.
+
   data: () => ({
     pageTitle: "Gérer les pages",
     dataChoice: ["Produit I", "Produit II"],
