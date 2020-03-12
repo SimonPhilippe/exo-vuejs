@@ -3,47 +3,54 @@
     <Nav :pageTitle="pageTitle"/>
     <v-row>
       <v-col lg="4" cols="12">
-        <v-card flat>
+        <v-card ref="form" flat>
           <v-card-title>Ajouter un article</v-card-title>
           <v-select
+            ref="newType"
             :items="dataChoice"
             v-model="newType"
             label="Quel produit ?"
             class="mb-6"
             single-line
             dense
-            hide-details
+            hide-details="auto"
             outlined
+            :rules="rules"
           ></v-select>
           <v-text-field
+            ref="newTitle"
             class="mb-6"
             label="Titre de l'article..."
             v-model="newTitle"
             single-line
             dense
-            hide-details
+            hide-details="auto"
             outlined
+            :rules="rules"
           ></v-text-field>
           <v-text-field
+            ref="newURL"
             class="mb-6"
             label="URL de l'image..."
             v-model="newURL"
             single-line
             dense
-            hide-details
+            hide-details="auto"
             outlined
           ></v-text-field>
           <v-textarea
+            ref="newText"
             class="mb-6"
             v-model="newText"
             clearable
             outlined
             single-line
             dense
-            hide-details
+            hide-details="auto"
             auto-grow
             clear-icon="mdi-close"
             label="Texte de l'article..."
+            :rules="rules"
           ></v-textarea>
         </v-card>
         <v-btn class="primary" width="100%" @click="addArticle">
@@ -100,7 +107,6 @@
 
 <script>
 import Nav from "./Nav";
-
 import API from "@/services/webservices.js";
 
 export default {
@@ -129,37 +135,58 @@ export default {
 
   //  Pas de POST pour l'instant
 
+  computed: {
+    form() {
+      return {
+        newType: this.newType,
+        newTitle: this.newTitle,
+        newText: this.newText
+      };
+    }
+  },
   data: () => ({
+    rules: [value => !!value || "Vous devez remplir ce champs."],
+    formHasErrors: false,
     pageTitle: "Gérer les pages",
     dataChoice: ["Produit I", "Produit II"],
-    newType: [],
-    newTitle: "",
-    newURL: "",
-    newText: "",
-    product1: [],
-    product2: [],
+    newType: null,
+    newTitle: null,
+    newURL: null,
+    newText: null,
+    product1: null,
+    product2: null,
     snackBar: false,
-    snackMsg: "",
-    snackType: ""
+    snackMsg: null,
+    snackType: null
   }),
   methods: {
     addArticle() {
-      if (this.newType == "Produit I") {
-        this.product1.push({
-          title: this.newTitle,
-          picture: this.newURL,
-          text: this.newText
-        });
-      } else {
-        this.product2.push({
-          title: this.newTitle,
-          picture: this.newURL,
-          text: this.newText
-        });
+      this.formHasErrors = false;
+
+      Object.keys(this.form).forEach(f => {
+        if (!this.form[f]) this.formHasErrors = true;
+
+        this.$refs[f].validate(true);
+      });
+      if (!this.formHasErrors) {
+        if (this.newType == "Produit I") {
+          this.product1.push({
+            title: this.newTitle,
+            picture: this.newURL,
+            text: this.newText
+          });
+        }
+        if (this.newType == "Produit II") {
+          this.product2.push({
+            title: this.newTitle,
+            picture: this.newURL,
+            text: this.newText
+          });
+        }
+        this.snackBar = true;
+        this.snackType = "success";
+        this.snackMsg = "L' article '" + this.newTitle + "' a été créé.";
       }
-      this.snackBar = true;
-      this.snackType = "success";
-      this.snackMsg = "L' article '" + this.newTitle + "' a été créé.";
     },
     removeFromList(product, list) {
       list.splice(list.indexOf(product), 1);

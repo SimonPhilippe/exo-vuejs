@@ -12,7 +12,6 @@
 <script>
 import Nav from "@/components/Nav";
 import Article from "@/components/Article";
-
 import API from "@/services/webservices.js";
 
 export default {
