@@ -168,6 +168,7 @@ export default {
 
         this.$refs[f].validate(true);
       });
+      this.snackBar = true;
       if (!this.formHasErrors) {
         if (this.newType == "Produit I") {
           this.product1.push({
@@ -183,9 +184,12 @@ export default {
             text: this.newText
           });
         }
-        this.snackBar = true;
+
         this.snackType = "success";
         this.snackMsg = "L' article '" + this.newTitle + "' a été créé.";
+      } else {
+        this.snackType = "error";
+        this.snackMsg = "L' article n'a pas pu être créé.";
       }
     },
     removeFromList(product, list) {
