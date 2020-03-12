@@ -13,7 +13,7 @@
 import Nav from "@/components/Nav";
 import Article from "@/components/Article";
 
-import axios from "axios";
+import API from "@/services/webservices.js";
 
 export default {
   name: "Home",
@@ -23,11 +23,8 @@ export default {
     Article
   },
 
-  // TODO / WIP - Meilleure intégration des fake calls API
-
   created() {
-    axios
-      .get("https://my-json-server.typicode.com/SimonPhilippe/demo/home")
+    API.getHomePosts()
       .then(response => {
         this.articles = response.data;
       })

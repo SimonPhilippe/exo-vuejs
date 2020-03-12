@@ -95,7 +95,7 @@
 <script>
 import Nav from "./Nav";
 
-import axios from "axios";
+import API from "@/services/webservices.js";
 
 export default {
   name: "Page_manager",
@@ -104,19 +104,15 @@ export default {
     Nav
   },
 
-  // TODO / WIP - Meilleure intégration des fake calls API
-
   created() {
-    axios
-      .get("https://my-json-server.typicode.com/SimonPhilippe/demo/product1")
+    API.getProduct1Posts()
       .then(response => {
         this.product1 = response.data;
       })
       .catch(e => {
         console.log("product1 GET error : ", e);
       });
-    axios
-      .get("https://my-json-server.typicode.com/SimonPhilippe/demo/product2")
+    API.getProduct2Posts()
       .then(response => {
         this.product2 = response.data;
       })
@@ -125,7 +121,7 @@ export default {
       });
   },
 
-  //  Pas de POST pour l'instant, les datas sont distinctes de celles des autres pages.
+  //  Pas de POST pour l'instant
 
   data: () => ({
     pageTitle: "Gérer les pages",
@@ -134,30 +130,8 @@ export default {
     newTitle: "",
     newURL: "",
     newText: "",
-    product1: [
-      {
-        title: "Dreamcatcher lo-fi",
-        picture:
-          "https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1052&q=80",
-        text:
-          "Four loko offal chillwave subway tile sustainable wayfarers 3 wolf moon. Tumeric jianbing lyft, messenger bag tilde fashion axe single-origin coffee vape. Copper mug kale chips irony, hot chicken tbh tote bag gochujang. Edison bulb banh mi before they sold out church-key distillery brooklyn meditation chillwave tacos hashtag chartreuse mumblecore keytar."
-      },
-      {
-        title: "Wolf VHS",
-        picture: "",
-        text:
-          "Cray godard salvia enamel pin twee, retro taiyaki messenger bag umami snackwave whatever. Pork belly coloring book pok pok aesthetic. Farm-to-table literally pok pok mlkshk humblebrag snackwave pug celiac roof party iPhone kitsch swag. Shaman austin tousled, intelligentsia af palo santo gluten-free gochujang keffiyeh hella street art actually meh."
-      }
-    ],
-    product2: [
-      {
-        title: "Art party",
-        picture:
-          "https://images.unsplash.com/photo-1496096265110-f83ad7f96608?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80",
-        text:
-          "I'm baby four loko woke +1, blog taxidermy iPhone church-key. Echo park edison bulb whatever gentrify mlkshk, 3 wolf moon affogato +1 copper mug poke pickled. Farm-to-table austin organic affogato sriracha aesthetic 90's. Freegan tumblr cornhole, biodiesel slow-carb live-edge ramps forage yr poutine kitsch tilde typewriter raw denim."
-      }
-    ]
+    product1: [],
+    product2: []
   }),
   methods: {
     addArticle() {
