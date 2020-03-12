@@ -95,11 +95,34 @@
 <script>
 import Nav from "./Nav";
 
+import axios from "axios";
+
 export default {
   name: "Page_manager",
 
   components: {
     Nav
+  },
+
+  // TODO / WIP - Meilleure intégration des fake calls API
+
+  created() {
+    axios
+      .get("https://my-json-server.typicode.com/SimonPhilippe/demo/product1")
+      .then(response => {
+        this.product1 = response.data;
+      })
+      .catch(e => {
+        console.log("product1 GET error : ", e);
+      });
+    axios
+      .get("https://my-json-server.typicode.com/SimonPhilippe/demo/product2")
+      .then(response => {
+        this.product2 = response.data;
+      })
+      .catch(e => {
+        console.log("product2 GET error : ", e);
+      });
   },
 
   //  Pas de POST pour l'instant, les datas sont distinctes de celles des autres pages.
