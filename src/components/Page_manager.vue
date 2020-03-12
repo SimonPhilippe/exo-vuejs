@@ -89,6 +89,12 @@
         </v-card>
       </v-col>
     </v-row>
+    <v-snackbar v-model="snackBar" :color="snackType" dark>
+      {{ snackMsg }}
+      <v-btn dark text @click="snackBar = false">
+        <v-icon>mdi-close</v-icon>
+      </v-btn>
+    </v-snackbar>
   </v-container>
 </template>
 
@@ -131,7 +137,10 @@ export default {
     newURL: "",
     newText: "",
     product1: [],
-    product2: []
+    product2: [],
+    snackBar: false,
+    snackMsg: "",
+    snackType: ""
   }),
   methods: {
     addArticle() {
@@ -148,9 +157,15 @@ export default {
           text: this.newText
         });
       }
+      this.snackBar = true;
+      this.snackType = "success";
+      this.snackMsg = "L' article '" + this.newTitle + "' a été créé.";
     },
     removeFromList(product, list) {
       list.splice(list.indexOf(product), 1);
+      this.snackBar = true;
+      this.snackType = "error";
+      this.snackMsg = "L' article '" + product.title + "' a été supprimé.";
     }
   }
 };
