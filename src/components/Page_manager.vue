@@ -15,7 +15,6 @@
         <v-card ref="form" flat>
           <v-card-title>Ajouter un article</v-card-title>
           <v-select
-            ref="newType"
             :items="dataChoice"
             v-model="newType"
             label="Quel produit ?"
@@ -27,7 +26,7 @@
             :rules="rules"
           ></v-select>
           <v-text-field
-            ref="newTitle"
+            ref="title"
             class="mb-6"
             label="Titre de l'article..."
             v-model="newTitle"
@@ -38,7 +37,7 @@
             :rules="rules"
           ></v-text-field>
           <v-text-field
-            ref="newURL"
+            ref="picture"
             class="mb-6"
             label="URL de l'image..."
             v-model="newURL"
@@ -48,7 +47,7 @@
             outlined
           ></v-text-field>
           <v-textarea
-            ref="newText"
+            ref="text"
             class="mb-6"
             v-model="newText"
             clearable
@@ -149,10 +148,9 @@ export default {
   computed: {
     form() {
       return {
-        newType: this.newType,
-        newTitle: this.newTitle,
-        newURL: this.newURL,
-        newText: this.newText
+        title: this.newTitle,
+        picture: this.newURL,
+        text: this.newText
       };
     }
   },
@@ -186,20 +184,11 @@ export default {
       this.snackBar = true;
       if (!this.formHasErrors) {
         if (this.newType == "Produit I") {
-          this.product1.push({
-            title: this.form.newTitle,
-            picture: this.form.newURL,
-            text: this.form.newText
-          });
+          this.addToList(this.form, this.product1);
         }
         if (this.newType == "Produit II") {
-          this.product2.push({
-            title: this.form.newTitle,
-            picture: this.form.newURL,
-            text: this.form.newText
-          });
+          this.addToList(this.form, this.product2);
         }
-
         this.snackType = "success";
         this.snackMsg = "L' article '" + this.newTitle + "' a été créé.";
       } else {
@@ -211,6 +200,14 @@ export default {
       this.confirmDisplay = true;
       this.productToDelete = product;
       this.targetList = list;
+    },
+    addToList(newItem, list) {
+      // TODO : Eviter les doublons
+      list.push({
+        title: newItem.title,
+        picture: newItem.picture,
+        text: newItem.text
+      });
     },
     confirm() {
       this.targetList.splice(this.targetList.indexOf(this.productToDelete), 1);
