@@ -140,6 +140,7 @@ export default {
       return {
         newType: this.newType,
         newTitle: this.newTitle,
+        newURL: this.newURL,
         newText: this.newText
       };
     }
@@ -162,26 +163,25 @@ export default {
   methods: {
     addArticle() {
       this.formHasErrors = false;
-
       Object.keys(this.form).forEach(f => {
-        if (!this.form[f]) this.formHasErrors = true;
-
+        if (!this.form[f] && this.$refs[f].label != "URL de l'image...")
+          this.formHasErrors = true;
         this.$refs[f].validate(true);
       });
       this.snackBar = true;
       if (!this.formHasErrors) {
         if (this.newType == "Produit I") {
           this.product1.push({
-            title: this.newTitle,
-            picture: this.newURL,
-            text: this.newText
+            title: this.form.newTitle,
+            picture: this.form.newURL,
+            text: this.form.newText
           });
         }
         if (this.newType == "Produit II") {
           this.product2.push({
-            title: this.newTitle,
-            picture: this.newURL,
-            text: this.newText
+            title: this.form.newTitle,
+            picture: this.form.newURL,
+            text: this.form.newText
           });
         }
 
