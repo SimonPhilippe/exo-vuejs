@@ -7,7 +7,7 @@
 
 ## Axes de l'exo à développer
 
-- Ajouter une fenêtre de dialogue à la suppression d'un article.
+- Ajouter une fenêtre de dialogue à la suppression d'un article. (à améliorer)
 - Plus de difficulté sur l'aspect front/responsive *(JS custom, CSS spécifique à un composant, etc.)*.
 - Eviter la création de doublons dans les listes des articles
 
