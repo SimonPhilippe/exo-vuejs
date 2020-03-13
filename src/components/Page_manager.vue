@@ -1,5 +1,14 @@
 <template>
   <v-container>
+    <!-- TODO : DiagBox plus propre -->
+    <ConfirmDialog
+      v-if="confirmDisplay"
+      :text="confirmText"
+      :confirmDisplay="confirmDisplay"
+      @confirm="confirm()"
+      @cancel="cancel()"
+    />
+    <!-- TODO : DiagBox plus propre -->
     <Nav :pageTitle="pageTitle"/>
     <v-row>
       <v-col lg="4" cols="12">
@@ -69,8 +78,8 @@
               <v-list-item-icon class="ma-0 text-center pt-6">
                 <v-icon v-if="product.picture">mdi-image</v-icon>
               </v-list-item-icon>
-              <v-list-item-action>
-                <v-icon class="error--text" @click="removeFromList(product, product1)">mdi-close</v-icon>
+              <v-list-item-action @click="displayDialog(product, product1)">
+                <v-icon class="error--text">mdi-close</v-icon>
               </v-list-item-action>
             </v-list-item>
           </v-list>
@@ -88,8 +97,8 @@
               <v-list-item-icon class="ma-0 text-center pt-6">
                 <v-icon v-if="product.picture">mdi-image</v-icon>
               </v-list-item-icon>
-              <v-list-item-action>
-                <v-icon class="error--text" @click="removeFromList(product, product2)">mdi-close</v-icon>
+              <v-list-item-action @click="displayDialog(product, product2)">
+                <v-icon class="error--text">mdi-close</v-icon>
               </v-list-item-action>
             </v-list-item>
           </v-list>
@@ -107,13 +116,15 @@
 
 <script>
 import Nav from "./Nav";
+import ConfirmDialog from "./ConfirmDialog";
 import API from "@/services/webservices.js";
 
 export default {
   name: "Page_manager",
 
   components: {
-    Nav
+    Nav,
+    ConfirmDialog
   },
 
   created() {
@@ -156,6 +167,10 @@ export default {
     newText: null,
     product1: null,
     product2: null,
+    confirmDisplay: false,
+    confirmText: "Voulez-vous vraiment supprimer cet article ?",
+    productToDelete: null,
+    targetList: null,
     snackBar: false,
     snackMsg: null,
     snackType: null
@@ -192,11 +207,23 @@ export default {
         this.snackMsg = "L' article n'a pas pu être créé.";
       }
     },
-    removeFromList(product, list) {
-      list.splice(list.indexOf(product), 1);
+    displayDialog(product, list) {
+      this.confirmDisplay = true;
+      this.productToDelete = product;
+      this.targetList = list;
+    },
+    confirm() {
+      this.targetList.splice(this.targetList.indexOf(this.productToDelete), 1);
       this.snackBar = true;
       this.snackType = "error";
-      this.snackMsg = "L' article '" + product.title + "' a été supprimé.";
+      this.snackMsg =
+        "L' article '" + this.productToDelete.title + "' a été supprimé.";
+      this.confirmDisplay = false;
+      this.productToDelete = null;
+      this.targetList = null;
+    },
+    cancel() {
+      this.confirmDisplay = false;
     }
   }
 };
